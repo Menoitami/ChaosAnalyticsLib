@@ -7,14 +7,15 @@
 
 namespace Backend{
 
-    void generateAttractor( const double* a, double h, int iterations, const double* initialState) {
+    std::vector<std::array<double, 3>> generateAttractor( const double* a, double h, int iterations, const double* initialState) {
         std::vector<std::array<double, 3>> points;
         double x[3] = { initialState[0], initialState[1], initialState[2] };
         for (int i = 0; i < iterations; ++i) {
             points.push_back({ x[0], x[1], x[2] });
-            //calcDiscreteModel(x, a, h);
+            calcDiscreteModel(x, a, h);
         }
-        saveAttractor(points);
+        //saveAttractor(points);
+        return points;
     }
 
     void saveAttractor(std::vector<std::array<double, 3> > points)
