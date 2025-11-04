@@ -1,12 +1,25 @@
 ﻿#pragma once
 
+#ifdef ATTRACTOR_EXPORTS
+#define ATTRACTOR_API __declspec(dllexport)
+#else
+#define ATTRACTOR_API __declspec(dllimport)
+#endif
+
 #include <vector>
 
 namespace Backend
 {
-    __declspec(dllexport) std::vector<std::array<double, 3>> generateAttractor(const double* a, double h, int iterations,const double* initialState);
+    extern "C" __declspec(dllexport)
+    int generateAttractor(
+        const double* a,
+        double h,
+        int iterations,
+        const double* initialState,
+        double* output_buffer,
+        int buffer_size);
 
-    extern "C" __declspec(dllexport) void saveAttractor(std::vector<std::array<double, 3>> points);
+    void saveAttractor(std::vector<std::array<double, 3>> points);
 
 
 
