@@ -6,16 +6,30 @@
 #include <system.cuh>
 
 namespace Backend{
+    int generateAttractor(
+        const double* a,
+        double h,
+        int iterations,
+        const double* initialState,
+        double* output_buffer,
+        int buffer_size) {
 
-    std::vector<std::array<double, 3>> generateAttractor( const double* a, double h, int iterations, const double* initialState) {
-        std::vector<std::array<double, 3>> points;
+        if (!a || !initialState || !output_buffer || iterations <= 0)
+            return -1;
+        if (buffer_size < iterations * 3)
+            return -1;
+
         double x[3] = { initialState[0], initialState[1], initialState[2] };
+
         for (int i = 0; i < iterations; ++i) {
-            points.push_back({ x[0], x[1], x[2] });
+            output_buffer[i * 3 + 0] = x[0];
+            output_buffer[i * 3 + 1] = x[1];
+            output_buffer[i * 3 + 2] = x[2];
+
             calcDiscreteModel(x, a, h);
         }
-        //saveAttractor(points);
-        return points;
+
+        return iterations;
     }
 
     void saveAttractor(std::vector<std::array<double, 3> > points)
@@ -39,14 +53,4 @@ namespace Backend{
 
 
 }
-    void createPlugin()
-    {
-        std::cout << "createPlugin done " << std::endl;;
-    }
-
-    void destroyPlugin()
-    {
-        std::cout << "destroyPlugin done ";
-
-    }
 
