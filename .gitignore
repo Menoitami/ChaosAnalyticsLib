@@ -1,3 +1,4 @@
 ﻿tmp/output
 build
 *.user
+tmp/input/system.cuh
