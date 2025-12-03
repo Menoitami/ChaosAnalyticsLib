@@ -11,6 +11,7 @@ namespace Backend{
         double h,
         int iterations,
         const double* initialState,
+        const int* output_dimension,
         double* output_buffer,
         int buffer_size) {
 
