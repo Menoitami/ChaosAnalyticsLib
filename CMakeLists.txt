@@ -43,13 +43,6 @@ target_link_libraries(AnalyticsBackend PUBLIC ${CUDA_LIBRARIES})
 target_compile_definitions(AnalyticsBackend PRIVATE
    OUTPUT_PATH="${OUTPUT_TEMP_PATH}")
 
-set(SOURCE_DIR "${CMAKE_SOURCE_DIR}" CACHE STRING "Path to the source directory")
-set(BUILD_PROG_DIR "${CMAKE_BINARY_DIR}" CACHE STRING "Path to the build directory")
-
-target_compile_definitions(AnalyticsBackend PUBLIC
-    SOURCE_DIR="${CMAKE_SOURCE_DIR}"
-    BUILD_PROG_DIR="${CMAKE_BINARY_DIR}"
-)
 
 
 install(TARGETS AnalyticsBackend DESTINATION lib)

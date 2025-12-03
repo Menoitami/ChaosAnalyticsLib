@@ -6,6 +6,7 @@
 #include <system.cuh>
 
 namespace Backend{
+
     int generateAttractor(
         const double* a,
         double h,
@@ -28,6 +29,7 @@ namespace Backend{
             output_buffer[i * 3 + 2] = x[2];
 
             calcDiscreteModel(x, a, h);
+
         }
 
         return iterations;
